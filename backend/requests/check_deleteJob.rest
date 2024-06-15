@@ -1,0 +1,1 @@
+DELETE http://localhost:3010/api/deleteJobByEmail/666dd6297230e46ca0925326

@@ -1,0 +1,17 @@
+PUT http://localhost:3010/api/updateJobById/666dd6297230e46ca0925326
+Content-Type: application/json
+
+{
+  "title": "Updated Software Engineer",
+  "description": "An updated description for a software engineer job position.",
+  "links": [
+    "https://example.com/updated-job-link",
+    "https://example.com/updated-resource-link"
+  ],
+  "keywords": [
+    "Updated Engineering",
+    "Updated Software",
+    "Updated Programming"
+  ],
+  "recruiterEmail": "updated.recruiter@example.com"
+}
