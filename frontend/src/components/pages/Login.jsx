@@ -35,9 +35,7 @@ export const Login = () => {
       <section className="h-screen flex justify-center bg-gray-100">
         <div className="container max-w-md mx-auto p-4 pt-6 md:p-6 lg:p-12">
           <div className="signin-image mb-4">
-            <figure>
-              <img src="/assets/logo.svg" alt="registration pic" />
-            </figure>
+            
             <Link to="/Signup" className="text-blue-600 hover:text-blue-900">
               Create new account
             </Link>

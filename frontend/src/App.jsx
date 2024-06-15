@@ -10,6 +10,7 @@ import { Login } from './components/pages/Login'
 import Khojshala from './components/pages/Khojshala'
 import Swarozgar from './components/pages/Swarozgar'
 import ContactUs from './components/pages/ContactUs'
+import { Signup } from './components/pages/Signup'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
     <Routes>
       <Route exact path='/' element={<Home />}/>
       <Route exact path='/Login' element={<Login />}/>
+      <Route exact path='/Signup' element={<Signup />}/>
       <Route exact path='/Khojshala' element={<Khojshala />}/>
       <Route exact path='/Swarozgar' element={<Swarozgar />}/>
       <Route exact path='/ContactUs' element={<ContactUs />}/>
