@@ -1,1 +1,2 @@
-DELETE http://localhost:3010/api/deleteCourseByEmail/666dd284c6bfa9988b0f2cfc
+DELETE http://localhost:3010/api/deleteCourseByEmail/666e0de7d02bf6c79db0405b
+Authorization: bearer 

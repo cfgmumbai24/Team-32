@@ -9,11 +9,13 @@ import string
 from pymongo import MongoClient
 import sys
 import argparse
-import zipfile
+import sys
+import json
+from bson.objectid import ObjectId
 
 # Download NLTK resources (if not already downloaded)
-nltk.download('stopwords')
-nltk.download('punkt')
+# nltk.download('stopwords')
+# nltk.download('punkt')
 
 # Load stopwords
 stop_words = set(stopwords.words('english'))
@@ -32,16 +34,14 @@ def preprocess_text(text):
     tokens = tokenize_text(text)
     return tokens
 
-def load_glove_embeddings(zip_path, file_name):
+def load_glove_embeddings(file_path):
     embeddings_index = {}
-    with zipfile.ZipFile(zip_path, 'r') as z:
-        with z.open(file_name) as f:
-            for line in f:
-                values = line.decode('utf-8').split()
-                word = values[0]
-                coefs = np.asarray(values[1:], dtype='float32')
-                embeddings_index[word] = coefs
-    print("Embedding_Index_Function_Running")
+    with open(file_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            values = line.split()
+            word = values[0]
+            coefs = np.asarray(values[1:], dtype='float32')
+            embeddings_index[word] = coefs
     return embeddings_index
 
 def get_embeddings(tokens, embeddings_index):
@@ -87,23 +87,24 @@ def find_similar_keywords(description, average_keyword_embeddings, keywords, emb
     return similar_keywords
 
 def return_keywords(_id, type, average_keyword_embeddings, keywords, embeddings_index):
-    print("*********************************************************")
+    print("*")
     mongo_uri = "mongodb+srv://sahajm2027:xaCf6sU8qBJ0ctCg@cfg.5kjekdy.mongodb.net/?retryWrites=true&w=majority&appName=CFG"  # Replace with your actual MongoDB URI
     client = MongoClient(mongo_uri)
     db = client['test']  # Replace with your actual database name
     content_collection = db[type]
-    print("")
+    print(content_collection)
     # Retrieve the document with the specified _id and only the keywords and description fields
     document = content_collection.find_one(
-        {"_id": _id},
-        {"keywords": 1, "description": 1}
+        {"_id": ObjectId(_id)}
+       
     )
-    
+    print(document)
     if document:
         # Extract existing keywords and description
         existing_keywords = document.get('keywords', [])
         description = document.get('description', None)
         
+        print(description)
         # If description exists, find similar keywords
         if description:
             additional_keywords = find_similar_keywords(description, average_keyword_embeddings, keywords, embeddings_index)
@@ -113,7 +114,7 @@ def return_keywords(_id, type, average_keyword_embeddings, keywords, embeddings_
             
             # Update the document with the new keywords
             content_collection.update_one(
-                {"_id": _id},
+                {"_id":  ObjectId(_id)},
                 {"$set": {"keywords": combined_keywords}}
             )
             
@@ -130,16 +131,15 @@ def return_keywords(_id, type, average_keyword_embeddings, keywords, embeddings_
         return []
 
 def main():
-    parser = argparse.ArgumentParser(description='Process some keywords.')
-    parser.add_argument('--id', type=str, required=True, help='The ID of the document')
-    parser.add_argument('--type', type=str, required=True, help='The type of the document')
     
-    args = parser.parse_args()
+    json_array = sys.argv[1] 
+    print(json_array)
+    array = json.loads(json_array)
+   
     print("ENTERING MAIN FUNCTION")
     # Load GloVe embeddings
-    zip_file_path = "C:\\Team-32\\backend\\controllers\\glove.6B.zip"
-    glove_file_name = "glove.6B.100d.txt"
-    embeddings_index = load_glove_embeddings(zip_file_path, glove_file_name)
+    glove_file_name = "C:\\Team-32\\backend\\controllers\\glove.6B.100d.txt"
+    embeddings_index = load_glove_embeddings( glove_file_name)
     
     # Load keywords
     keywords_file_path = "C:\\Team-32\\backend\\controllers\\keywords.txt"
@@ -149,7 +149,7 @@ def main():
     average_keyword_embeddings = prepare_keywords(keywords, embeddings_index)
     
     # Get and print keywords
-    finalKeywords = return_keywords(args.id, args.type, average_keyword_embeddings, keywords, embeddings_index)
+    finalKeywords = return_keywords(array[0], array[1], average_keyword_embeddings, keywords, embeddings_index)
     print(finalKeywords)
 
 if __name__ == "_main_":
