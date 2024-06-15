@@ -2,7 +2,7 @@ POST http://localhost:3010/api/insertUser
 Content-Type: application/json
 
 {
-    "email": "johney.doe@example.com",
+    "email": "johneyman.doe@example.com",
     "name": "John Doe",
     "password": "securepassword123",
     "role": 2,
