@@ -6,7 +6,7 @@ const contentSchema = new mongoose.Schema({
     links: [String],
     likes: [String],
     keywords: [String],
-    mentorEmail: String,
+    contentCreatorEmail: String,
     images: [String],
 });
 

@@ -12,7 +12,6 @@ contentRouter.post(
         check('description').notEmpty().withMessage('Description is required'),
         check('links').isArray().withMessage('Links must be an array'),
         check('keywords').isArray().withMessage('Keywords must be an array'),
-        check('courseCreaterEmail').isEmail().withMessage('Course creator email must be a valid email address'),
         check('difficulty').notEmpty().withMessage('Difficulty is required'),
         check('mentorEmail').isEmail().withMessage('Mentor email must be a valid email address'),
         check('images').optional().isArray().withMessage('Images must be an array if provided'),
