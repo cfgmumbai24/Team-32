@@ -3,6 +3,7 @@ const Content = require("../models/content");
 const jwt = require('jsonwebtoken');
 const contentRouter = express.Router();
 const { tokenExtractor, userExtractor } = require('../utils/middleware');
+const { spawn } = require("child_process");
 
 const { check, validationResult } = require('express-validator');
 
@@ -36,13 +37,32 @@ contentRouter.post(
             });
 
             const savedContent = await newContent.save();
-            console.log(savedContent);
+            console.log("Saved Content:", savedContent);
 
-            // Respond with the saved content (Python equivalent: return jsonify(saved_content))
+            const type = "contents";
 
+            // Spawn Python process to execute code.py with _id and type as arguments
+            const pythonProcess = spawn("python", ["C:\\Team-32\\backend\\controllers\\code.py", "--id", savedContent._id.toString(), "--type", type]);
 
+            // Listen for stdout data from Python script
+            pythonProcess.stdout.on("data", (data) => {
+                console.log(`Python stdout: ${data}`);
+            });
+
+            // Listen for errors from Python script
+            pythonProcess.stderr.on("data", (data) => {
+                console.error(`Python stderr: ${data}`);
+            });
+
+            // Handle Python script exit
+            pythonProcess.on("close", (code) => {
+                console.log(`Python process exited with code ${code}`);
+            });
+
+            // Respond with the saved content
             res.status(201).json(savedContent);
         } catch (error) {
+            console.error("Error:", error.message);
             res.status(500).json({ message: error.message });
         }
     }

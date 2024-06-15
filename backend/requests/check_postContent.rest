@@ -3,17 +3,13 @@ Content-Type: application/json
 
 {
   "title": "Introduction to Machine Learning",
-  "description": "This course covers the basics of machine learning.",
+  "description": "Data Encryption, Payment Integration APIs, Security Certifications, Web Application Firewalls, Content Security Policy (CSP), Threat Modeling, Incident Response, Penetration Testing Tools, Server Security, Network Security, Cryptography",
   "links": [
     "https://example.com/course-link",
     "https://example.com/resource-link"
   ],
   "likes": [],
-  "keywords": [
-    "Machine Learning",
-    "Artificial Intelligence",
-    "Data Science"
-  ],
+  "keywords": [],
   "contentCreatorEmail": "creator@example.com",
   "images": [
     "https://example.com/image1.jpg",
