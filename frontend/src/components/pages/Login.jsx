@@ -2,7 +2,16 @@ import { useState } from 'react';
 import MailIcon from '@mui/icons-material/Mail';
 import LockIcon from '@mui/icons-material/Lock';
 import { Link, useNavigate } from 'react-router-dom';
-
+import CryptoJS from 'crypto-js';
+89
+const encryptData = (data, secretKey) => {
+  const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
+  return ciphertext;
+};
+const saveToLocalStorage = (key, data, secretKey) => {
+  const encryptedData = encryptData(data, secretKey);
+  localStorage.setItem(key, encryptedData);
+};
 export const Login = () => {
   const navigate = useNavigate();
 
@@ -11,7 +20,7 @@ export const Login = () => {
 
   const loginuser = async (e) => {
     e.preventDefault();
-    const res = await fetch('/signin?', {
+    const res = await fetch('http://localhost:3010/api/login', {
       method: 'POST',
       headers: {
         'content-Type': 'application/json',
@@ -22,11 +31,17 @@ export const Login = () => {
       }),
     });
     const data = await res.json();
+    console.log(data)
     if (data.status === 400 || !data) {
       window.alert('Invalid credentials');
     } else {
       window.alert('Successful login');
       navigate('/');
+    }
+    if (data.token!=null&&data.token!=undefined){
+      saveToLocalStorage("auth-token",data.token,"encrypt-key");
+      saveToLocalStorage("userEmail",data.email,"encrypt-key");
+      saveToLocalStorage("userEmail",data.role,"encrypt-key");
     }
   };
 
@@ -42,7 +57,7 @@ export const Login = () => {
           </div>
           <div className="signin-content">
             <div className="signup-form">
-              <h2 className="form-title text-center">Sign in</h2>
+              <h2 className="form-title text-center">Log in</h2>
               <form className="register-form" id="register-form">
                 <div className="form-group mb-4">
                   <label htmlFor="email">
