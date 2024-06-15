@@ -1,5 +1,6 @@
 POST http://localhost:3010/api/insertCourse
 Content-Type: application/json
+Authorization: bearer 
 
 {
   "title": "Introduction to Machine Learning",

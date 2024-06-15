@@ -15,6 +15,7 @@ jobsRouter.post("/insertJob",
         check('recruiterEmail').isEmail().withMessage('Invalid email address'),
     ],
     async (req, res) => {
+        
         // Validate the request
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -31,6 +32,24 @@ jobsRouter.post("/insertJob",
             });
 
             const savedJob = await newJob.save();
+
+            const type = 'jobs';
+
+            const array = [savedContent._id, type]
+            // Spawn Python process to execute code.py with _id and type as arguments
+            const pythonProcess = spawn("python", [
+                "C:\\Team-32\\backend\\controllers\\code.py",
+                JSON.stringify(array)  // Convert the array to JSON string
+            ]);
+            // Listen for stdout data from Python script
+            pythonProcess.stdout.on("data", (data) => {
+                console.log(`Python stdout: ${data}`);
+            });
+
+            // Listen for errors from Python script
+            pythonProcess.stderr.on("data", (data) => {
+                console.error(`Python stderr: ${data}`);
+            });
             res.status(201).json(savedJob);
         } catch (error) {
             res.status(500).json({ message: error.message });

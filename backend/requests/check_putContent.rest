@@ -1,5 +1,6 @@
-PUT http://localhost:3010/api/updateContentById/666db526dcc5622c73c1084c
+PUT http://localhost:3010/api/updateContentById/666e0b1767b8461fd8a6107f
 Content-Type: application/json
+Authorization: bearer 
 
 {
   "title": "Advanced Machine Learning",
