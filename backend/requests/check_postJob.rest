@@ -1,5 +1,6 @@
 POST http://localhost:3010/api/insertJob
 Content-Type: application/json
+Authorization: bearer 
 
 {
   "title": "Software Engineer",
