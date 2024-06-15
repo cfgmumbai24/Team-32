@@ -12,6 +12,7 @@ import Jobs from './components/pages/Jobs'
 import Swarozgar from './components/pages/Swarozgar'
 import ContactUs from './components/pages/ContactUs'
 import { Signup } from './components/pages/Signup'
+import Courses from './components/pages/Courses'
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       <Route exact path='/Jobs' element={<Jobs />}/>
       <Route exact path='/Swarozgar' element={<Swarozgar />}/>
       <Route exact path='/ContactUs' element={<ContactUs />}/>
+      <Route exact path='/Courses' element={<Courses />}/>
       <Route path="/job/:id" element={<JobDetail />} />
       
     </Routes>
