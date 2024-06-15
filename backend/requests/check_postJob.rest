@@ -1,0 +1,18 @@
+POST http://localhost:3010/api/insertJob
+Content-Type: application/json
+
+{
+  "title": "Software Engineer",
+  "description": "A job position for a software engineer.",
+  "links": [
+    "https://example.com/job-link",
+    "https://example.com/resource-link"
+  ],
+  "keywords": [
+    "Engineering",
+    "Software",
+    "Programming"
+  ],
+  "recruiterEmail": "recruiter@example.com"
+}
+

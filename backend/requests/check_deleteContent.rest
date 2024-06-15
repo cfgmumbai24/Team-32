@@ -1,0 +1,1 @@
+DELETE http://localhost:3010/api/deleteContentByEmail/666dcbb0869f27759544015c

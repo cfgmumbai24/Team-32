@@ -1,0 +1,18 @@
+POST http://localhost:3010/api/insertCourse
+Content-Type: application/json
+
+{
+  "title": "Introduction to Machine Learning",
+  "description": "A beginner-friendly course on machine learning.",
+  "links": [
+    "https://example.com/course-link",
+    "https://example.com/resource-link"
+  ],
+  "keywords": [
+    "Machine Learning",
+    "AI",
+    "Data Science"
+  ],
+  "courseCreaterEmail": "creator@example.com",
+  "difficulty": "Beginner"
+}

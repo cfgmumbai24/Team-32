@@ -1,6 +1,8 @@
 const express = require("express");
 const Content = require("../models/content");
+const jwt = require('jsonwebtoken');
 const contentRouter = express.Router();
+const { tokenExtractor, userExtractor } = require('../utils/middleware');
 
 const { check, validationResult } = require('express-validator');
 
@@ -11,9 +13,9 @@ contentRouter.post(
         check('title').notEmpty().withMessage('Title is required'),
         check('description').notEmpty().withMessage('Description is required'),
         check('links').isArray().withMessage('Links must be an array'),
+        check('likes').isArray().withMessage('Likes must be an array'),
         check('keywords').isArray().withMessage('Keywords must be an array'),
-        check('difficulty').notEmpty().withMessage('Difficulty is required'),
-        check('mentorEmail').isEmail().withMessage('Mentor email must be a valid email address'),
+        check('contentCreatorEmail').isEmail().withMessage('Invalid email address'),
         check('images').optional().isArray().withMessage('Images must be an array if provided'),
     ],
     async (req, res) => {
@@ -27,22 +29,24 @@ contentRouter.post(
                 title: req.body.title,
                 description: req.body.description,
                 links: req.body.links,
+                likes: req.body.likes,
                 keywords: req.body.keywords,
-                courseCreaterEmail: req.body.courseCreaterEmail,
-                difficulty: req.body.difficulty,
-                likes: [],
-                mentorEmail: req.body.mentorEmail,
-                images: req.body.images || [],
+                contentCreatorEmail: req.body.contentCreatorEmail,
+                images: req.body.images,
             });
 
             const savedContent = await newContent.save();
+            console.log(savedContent);
+
+            // Respond with the saved content (Python equivalent: return jsonify(saved_content))
+
+
             res.status(201).json(savedContent);
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
     }
 );
-
 
 contentRouter.get("/getAllContent", async (req, res) => {
     try {
@@ -71,11 +75,9 @@ contentRouter.put("/updateContentById/:id", async (req, res) => {
         content.title = req.body.title || content.title;
         content.description = req.body.description || content.description;
         content.links = req.body.links || content.links;
+        content.likes = req.body.likes || content.likes;
         content.keywords = req.body.keywords || content.keywords;
-        content.courseCreaterEmail =
-            req.body.courseCreaterEmail || content.courseCreaterEmail;
-        content.difficulty = req.body.difficulty || content.difficulty;
-        content.mentorEmail = req.body.mentorEmail || content.mentorEmail;
+        content.contentCreatorEmail = req.body.contentCreatorEmail || content.contentCreatorEmail;
         content.images = req.body.images || content.images;
 
         const updatedContent = await content.save();
@@ -85,16 +87,25 @@ contentRouter.put("/updateContentById/:id", async (req, res) => {
     }
 });
 
-contentRouter.delete("/deleteContentByEmail/:id", async (req, res) => {
-    try {
-        const content = await Content.findById(req.params.id);
-        if (!content) return res.status(404).json({ message: "Content not found" });
+contentRouter.delete("/deleteContentByEmail/:id", async (request, response) => {
+        try {
 
-        await content.remove();
-        res.json({ message: "Content deleted" });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+            // Find the content by its ID
+            const content = await Content.findById(request.params.id);
+            if (!content) {
+                return response.status(404).json({ message: 'Content not found' });
+            }
+
+            // Remove the content from the database
+            await content.deleteOne();
+
+            // Respond with a success message
+            response.status(204).json({ message: 'Content deleted' }).end();
+        } 
+        catch (error) {
+            response.status(500).json({ message: error.message });
+        }
     }
-});
+);
 
 module.exports = contentRouter;

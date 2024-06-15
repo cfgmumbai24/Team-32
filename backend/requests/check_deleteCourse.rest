@@ -1,0 +1,1 @@
+DELETE http://localhost:3010/api/deleteCourseByEmail/666dd284c6bfa9988b0f2cfc

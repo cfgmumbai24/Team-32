@@ -1,26 +1,43 @@
 const express = require("express");
 const Course = require("../models/course");
 const courseRouter = express.Router();
+const { check, validationResult } = require('express-validator');
 
-courseRouter.post("/", async (req, res) => {
-    try {
-        const newCourse = new Course({
-            title: req.body.title,
-            description: req.body.description,
-            links: req.body.links,
-            keywords: req.body.keywords,
-            courseCreaterEmail: req.body.courseCreaterEmail,
-            difficulty: req.body.difficulty,
-        });
+courseRouter.post("/insertCourse",
+    [
+        check('title').notEmpty().withMessage('Title is required'),
+        check('description').notEmpty().withMessage('Description is required'),
+        check('links').isArray().withMessage('Links must be an array'),
+        check('keywords').isArray().withMessage('Keywords must be an array'),
+        check('courseCreaterEmail').isEmail().withMessage('Invalid email address'),
+        check('difficulty').notEmpty().withMessage('Difficulty is required'),
+    ],
+    async (req, res) => {
+        // Validate the request
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
 
-        const savedCourse = await newCourse.save();
-        res.status(201).json(savedCourse);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
+        try {
+            const newCourse = new Course({
+                title: req.body.title,
+                description: req.body.description,
+                links: req.body.links,
+                keywords: req.body.keywords,
+                courseCreaterEmail: req.body.courseCreaterEmail,
+                difficulty: req.body.difficulty,
+            });
+
+            const savedCourse = await newCourse.save();
+            res.status(201).json(savedCourse);
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
     }
-});
+);
 
-courseRouter.get("/", async (req, res) => {
+courseRouter.get("/getAllCourse", async (req, res) => {
     try {
         const courses = await Course.find();
         res.json(courses);
@@ -29,7 +46,7 @@ courseRouter.get("/", async (req, res) => {
     }
 });
 
-courseRouter.get("/:id", async (req, res) => {
+courseRouter.get("/getCourseById/:id", async (req, res) => {
     try {
         const course = await Course.findById(req.params.id);
         if (!course) return res.status(404).json({ message: "Course not found" });
@@ -40,7 +57,7 @@ courseRouter.get("/:id", async (req, res) => {
 });
 
 // Update specific course by ID
-courseRouter.put("/:id", async (req, res) => {
+courseRouter.put("/updateCourseById/:id", async (req, res) => {
     try {
         const course = await Course.findById(req.params.id);
         if (!course) return res.status(404).json({ message: "Course not found" });
@@ -61,12 +78,12 @@ courseRouter.put("/:id", async (req, res) => {
 });
 
 // Delete specific course by ID
-courseRouter.delete("/:id", async (req, res) => {
+courseRouter.delete("/deleteCourseByEmail/:id", async (req, res) => {
     try {
         const course = await Course.findById(req.params.id);
         if (!course) return res.status(404).json({ message: "Course not found" });
 
-        await course.remove();
+        await course.deleteOne();
         res.json({ message: "Course deleted" });
     } catch (error) {
         res.status(500).json({ message: error.message });

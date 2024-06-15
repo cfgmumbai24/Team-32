@@ -1,29 +1,45 @@
 // jobsController.js
 
 const express = require("express");
-const Job = require("../models/job"); // Adjust the path as needed
+const Job = require("../models/job");
+ // Adjust the path as needed
+const { check, validationResult } = require('express-validator');
 const jobsRouter = express.Router();
 
-// Create a new job
-jobsRouter.post("/", async (req, res) => {
-    try {
-        const newJob = new Job({
-            title: req.body.title,
-            description: req.body.description,
-            links: req.body.links,
-            keywords: req.body.keywords,
-            recruiterEmail: req.body.recruiterEmail,
-        });
+jobsRouter.post("/insertJob",
+    [
+        check('title').notEmpty().withMessage('Title is required'),
+        check('description').notEmpty().withMessage('Description is required'),
+        check('links').isArray().withMessage('Links must be an array'),
+        check('keywords').isArray().withMessage('Keywords must be an array'),
+        check('recruiterEmail').isEmail().withMessage('Invalid email address'),
+    ],
+    async (req, res) => {
+        // Validate the request
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
 
-        const savedJob = await newJob.save();
-        res.status(201).json(savedJob);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
+        try {
+            const newJob = new Job({
+                title: req.body.title,
+                description: req.body.description,
+                links: req.body.links,
+                keywords: req.body.keywords,
+                recruiterEmail: req.body.recruiterEmail,
+            });
+
+            const savedJob = await newJob.save();
+            res.status(201).json(savedJob);
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
     }
-});
+);
 
 // Get all jobs
-jobsRouter.get("/", async (req, res) => {
+jobsRouter.get("/getAllJobs", async (req, res) => {
     try {
         const jobs = await Job.find();
         res.json(jobs);
@@ -33,7 +49,7 @@ jobsRouter.get("/", async (req, res) => {
 });
 
 // Get specific job by ID
-jobsRouter.get("/:id", async (req, res) => {
+jobsRouter.get("/getJobById/:id", async (req, res) => {
     try {
         const job = await Job.findById(req.params.id);
         if (!job) return res.status(404).json({ message: "Job not found" });
@@ -44,7 +60,7 @@ jobsRouter.get("/:id", async (req, res) => {
 });
 
 // Update specific job by ID
-jobsRouter.put("/:id", async (req, res) => {
+jobsRouter.put("/updateJobById/:id", async (req, res) => {
     try {
         const job = await Job.findById(req.params.id);
         if (!job) return res.status(404).json({ message: "Job not found" });
@@ -63,12 +79,12 @@ jobsRouter.put("/:id", async (req, res) => {
 });
 
 // Delete specific job by ID
-jobsRouter.delete("/:id", async (req, res) => {
+jobsRouter.delete("/deleteJobByEmail/:id", async (req, res) => {
     try {
         const job = await Job.findById(req.params.id);
         if (!job) return res.status(404).json({ message: "Job not found" });
 
-        await job.remove();
+        await job.deleteOne();
         res.json({ message: "Job deleted" });
     } catch (error) {
         res.status(500).json({ message: error.message });

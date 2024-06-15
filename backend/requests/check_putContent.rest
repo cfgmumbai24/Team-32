@@ -1,0 +1,22 @@
+PUT http://localhost:3010/api/updateContentById/666db526dcc5622c73c1084c
+Content-Type: application/json
+
+{
+  "title": "Advanced Machine Learning",
+  "description": "This course covers advanced topics in machine learning.",
+  "links": [
+    "https://example.com/advanced-course-link",
+    "https://example.com/advanced-resource-link"
+  ],
+  "likes": ["user1@example.com", "user2@example.com"],
+  "keywords": [
+    "Advanced Machine Learning",
+    "Deep Learning",
+    "Neural Networks"
+  ],
+  "contentCreatorEmail": "newcreator@example.com",
+  "images": [
+    "https://example.com/new-image1.jpg",
+    "https://example.com/new-image2.jpg"
+  ]
+}
