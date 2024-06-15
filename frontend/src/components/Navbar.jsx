@@ -73,22 +73,35 @@ const Navbar = () => {
                 Home
               </Link>
               <Link
-                to="/Jobs"
-                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-               Jobs
-              </Link>
-              <Link
                 to="/Swarozgar"
                 className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 Swarozgar Fellowship
               </Link>
               <Link
+                to="/Jobs"
+                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+               Jobs
+              </Link>
+              
+              <Link
                 to="/Courses"
                 className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 Courses
+              </Link>
+              <Link
+                to="/Mentorship"
+                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                Mentorship
+              </Link>
+              <Link
+                to="/Forum"
+                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                Swarozgar Forum
               </Link>
               <Link
                 to="/Login"
@@ -99,9 +112,7 @@ const Navbar = () => {
               
             </div>
 
-            <div className="flex items-center mt-4 lg:mt-0">
-              
-            </div>
+            
           </div>
         </div>
       </div>
