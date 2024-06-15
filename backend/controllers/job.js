@@ -1,7 +1,7 @@
 // jobsController.js
 
 const express = require("express");
-const Job = require("../models/jobs"); // Adjust the path as needed
+const Job = require("../models/job"); // Adjust the path as needed
 const jobsRouter = express.Router();
 
 // Create a new job
