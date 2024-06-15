@@ -11,9 +11,9 @@ contentRouter.post(
         check('title').notEmpty().withMessage('Title is required'),
         check('description').notEmpty().withMessage('Description is required'),
         check('links').isArray().withMessage('Links must be an array'),
+        check('likes').isArray().withMessage('Likes must be an array'),
         check('keywords').isArray().withMessage('Keywords must be an array'),
-        check('difficulty').notEmpty().withMessage('Difficulty is required'),
-        check('mentorEmail').isEmail().withMessage('Mentor email must be a valid email address'),
+        check('contentCreatorEmail').isEmail().withMessage('Invalid email address'),
         check('images').optional().isArray().withMessage('Images must be an array if provided'),
     ],
     async (req, res) => {
@@ -27,12 +27,10 @@ contentRouter.post(
                 title: req.body.title,
                 description: req.body.description,
                 links: req.body.links,
+                likes: req.body.likes,
                 keywords: req.body.keywords,
-                courseCreaterEmail: req.body.courseCreaterEmail,
-                difficulty: req.body.difficulty,
-                likes: [],
-                mentorEmail: req.body.mentorEmail,
-                images: req.body.images || [],
+                contentCreatorEmail: req.body.contentCreatorEmail,
+                images: req.body.images,
             });
 
             const savedContent = await newContent.save();
@@ -71,11 +69,9 @@ contentRouter.put("/updateContentById/:id", async (req, res) => {
         content.title = req.body.title || content.title;
         content.description = req.body.description || content.description;
         content.links = req.body.links || content.links;
+        content.likes = req.body.likes || content.likes;
         content.keywords = req.body.keywords || content.keywords;
-        content.courseCreaterEmail =
-            req.body.courseCreaterEmail || content.courseCreaterEmail;
-        content.difficulty = req.body.difficulty || content.difficulty;
-        content.mentorEmail = req.body.mentorEmail || content.mentorEmail;
+        content.contentCreatorEmail = req.body.contentCreatorEmail || content.contentCreatorEmail;
         content.images = req.body.images || content.images;
 
         const updatedContent = await content.save();
