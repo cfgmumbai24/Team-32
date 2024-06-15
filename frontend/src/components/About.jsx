@@ -3,15 +3,24 @@ import React from 'react'
 const About = () => {
   return (
 
-    <div className="m-4 grid sm:grid-cols-2 gap-4">
-        <div className="min-h-[200px] rounded-lg bg-blue-600 text-center">
+    <div className="m-4 p-4 grid sm:grid-cols-2 gap-4">
+
+{/* <div className="m-3 p-16 rounded-xl relative bg-[rgba(255,255,255,0.5)] shadow-content flex-center flex-col">
+        <Image src="/assets/images/home_bg.jpg" fill={true} className="h-full w-full object-cover rounded-xl -z-10" alt="Background Image(Garbage Truck)"/>
+        <Image src="/assets/icons/recylink_black.png" width={300} height={300} alt="Recylink Logo" className="pb-4"/>
+        <div className="text-3xl md:text-3xl w-4/5 text-black font-medium flex-center flex-col">
+
+        </div>
+      </div> */}
+      
+        <div className="min-h-[200px] p-4 rounded-lg bg-cyan-200 text-center">
         <h1 className="tracking-tight ">Khojshala Program</h1>
             <div className="m-4"> 
             
             The Khojshala program by Margshala Foundation is dedicated to exploring and understanding the unique challenges faced by rural youth in remote Himalayan regions. It aims to uncover hidden potential and opportunities within these communities through extensive field research, data collection, and community engagement. This program plays a vital role in ensuring that the solutions Margshala implements are not only innovative but also rooted in the real needs and aspirations of the local youth.
             </div>
         </div>
-        <div className="min-h-[200px] rounded-lg bg-yellow-400  text-center">
+        <div className="min-h-[200px] p-4 rounded-lg bg-cyan-400  text-center">
           
           <h1 className="tracking-tight">Swarozgar Fellowship</h1>
           
