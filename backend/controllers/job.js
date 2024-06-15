@@ -5,6 +5,7 @@ const Job = require("../models/job");
  // Adjust the path as needed
 const { check, validationResult } = require('express-validator');
 const jobsRouter = express.Router();
+const { spawn } = require("child_process");
 
 jobsRouter.post("/insertJob",
     [
@@ -35,7 +36,7 @@ jobsRouter.post("/insertJob",
 
             const type = 'jobs';
 
-            const array = [savedContent._id, type]
+            const array = [savedJob._id, type]
             // Spawn Python process to execute code.py with _id and type as arguments
             const pythonProcess = spawn("python", [
                 "C:\\Team-32\\backend\\controllers\\code.py",

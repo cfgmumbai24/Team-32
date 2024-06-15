@@ -4,6 +4,8 @@ const courseRouter = express.Router();
 const { check, validationResult } = require('express-validator');
 const tokenExtractor = require('../utils/middleware').tokenExtractor;
 const jwt = require('jsonwebtoken');
+const { spawn } = require("child_process");
+
 
 courseRouter.post("/insertCourse",
     [
@@ -41,7 +43,7 @@ courseRouter.post("/insertCourse",
 
             const type = 'courses';
 
-            const array = [savedContent._id, type]
+            const array = [savedCourse._id, type]
             // Spawn Python process to execute code.py with _id and type as arguments
             const pythonProcess = spawn("python", [
                 "C:\\Team-32\\backend\\controllers\\code.py",
