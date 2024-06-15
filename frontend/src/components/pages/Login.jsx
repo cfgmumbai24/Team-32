@@ -11,7 +11,7 @@ export const Login = () => {
 
   const loginuser = async (e) => {
     e.preventDefault();
-    const res = await fetch('/sigin?', {
+    const res = await fetch('/signin?', {
       method: 'POST',
       headers: {
         'content-Type': 'application/json',
@@ -36,7 +36,7 @@ export const Login = () => {
         <div className="container max-w-md mx-auto p-4 pt-6 md:p-6 lg:p-12">
           <div className="signin-image mb-4">
             <figure>
-              <img src="/images/logo.svg" alt="registration pic" />
+              <img src="/assets/logo.svg" alt="registration pic" />
             </figure>
             <Link to="/Signup" className="text-blue-600 hover:text-blue-900">
               Create new account
