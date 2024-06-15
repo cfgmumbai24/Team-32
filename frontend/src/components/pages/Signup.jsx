@@ -11,12 +11,47 @@ export const Signup = () => {
     email: '',
     phone: '',
     password: '',
-    cpassword: '',
+    cstress: '',
   });
 
   const handleInputs = (e) => {
     const { name, value } = e.target;
-    setUser({...user, [name]: value });
+    setUser({ ...user, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent the default form submission
+    if (user.password !== user.cpassword) {
+      alert('Passwords do not match!');
+      return;
+    }
+    // Make API call
+    try {
+      const response = await fetch('http://localhost:3010/api/insertUser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: user.name,
+          email: user.email,
+          phone: user.phone,
+          password: user.password,
+          role:1,
+          keywords:[] // Ensure your backend hashes this password before storing
+        }),
+      });
+      const data = await response.json();
+      // You can handle the response further
+      if (response.ok) {
+        alert('Registration successful!');
+        // Redirect or clear form here
+      } else {
+        throw new Error(data.message || 'Something went wrong');
+      }
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
@@ -25,7 +60,7 @@ export const Signup = () => {
         <div className="signup-content">
           <div className="signup-form">
             <h2 className="form-title text-center">Sign up</h2>
-            <form className="register-form">
+            <form className="register-form" onSubmit={handleSubmit}>
               <div className="form-group mb-4">
                 <label htmlFor="name">
                   <PersonIcon />
@@ -92,7 +127,7 @@ export const Signup = () => {
                   id="cpassword"
                   value={user.cpassword}
                   onChange={handleInputs}
-                  placeholder="Your confirm password"
+                  placeholder="Confirm your password"
                   className="w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
               </div>
@@ -107,7 +142,6 @@ export const Signup = () => {
               </div>
             </form>
             <div className="signup-image">
-              
               <Link to="/login" className="text-blue-600 hover:text-blue-900">
                 I am already registered
               </Link>

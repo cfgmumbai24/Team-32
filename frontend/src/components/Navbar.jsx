@@ -9,13 +9,13 @@ const Navbar = () => {
       <div className="container px-6 py-8 mx-auto">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
-            <a href="#">
+            <Link to="#">
               <img
                 className="w-auto h-10 sm:h-8s"
                 src="https://margshala.com/wp-content/uploads/2023/08/Margshala-Logo.png"
                 alt="Logo"
               />
-            </a>
+            </Link>
             {/* Mobile menu button */}
             <div className="flex lg:hidden">
               <button
@@ -66,36 +66,36 @@ const Navbar = () => {
             }`}
           >
             <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 Home
-              </a>
-              <a
-                href="/Khojshala"
+              </Link>
+              <Link
+                to="/Jobs"
                 className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
-                Khojshala
-              </a>
-              <a
-                href="/Swarozgar"
+               Jobs
+              </Link>
+              <Link
+                to="/Swarozgar"
                 className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 Swarozgar Fellowship
-              </a>
-              <a
-                href="/ContactUs"
+              </Link>
+              <Link
+                to="/Courses"
                 className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
-                ContactUs
-              </a>
-              <a
-                href="/Login"
+                Courses
+              </Link>
+              <Link
+                to="/Login"
                 className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 Login
-              </a>
+              </Link>
               
             </div>
 
