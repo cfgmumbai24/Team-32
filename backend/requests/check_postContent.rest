@@ -8,14 +8,13 @@ Content-Type: application/json
     "https://example.com/course-link",
     "https://example.com/resource-link"
   ],
+  "likes": [],
   "keywords": [
     "Machine Learning",
     "Artificial Intelligence",
     "Data Science"
   ],
-  "courseCreaterEmail": "creator@example.com",
-  "difficulty": "Intermediate",
-  "mentorEmail": "mentor@example.com",
+  "contentCreatorEmail": "creator@example.com",
   "images": [
     "https://example.com/image1.jpg",
     "https://example.com/image2.jpg"

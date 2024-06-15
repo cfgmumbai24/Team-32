@@ -1,6 +1,8 @@
 const express = require("express");
 const Content = require("../models/content");
+const jwt = require('jsonwebtoken');
 const contentRouter = express.Router();
+const { tokenExtractor, userExtractor } = require('../utils/middleware');
 
 const { check, validationResult } = require('express-validator');
 
@@ -34,13 +36,17 @@ contentRouter.post(
             });
 
             const savedContent = await newContent.save();
+            console.log(savedContent);
+
+            // Respond with the saved content (Python equivalent: return jsonify(saved_content))
+
+
             res.status(201).json(savedContent);
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
     }
 );
-
 
 contentRouter.get("/getAllContent", async (req, res) => {
     try {
@@ -81,16 +87,25 @@ contentRouter.put("/updateContentById/:id", async (req, res) => {
     }
 });
 
-contentRouter.delete("/deleteContentByEmail/:id", async (req, res) => {
-    try {
-        const content = await Content.findById(req.params.id);
-        if (!content) return res.status(404).json({ message: "Content not found" });
+contentRouter.delete("/deleteContentByEmail/:id", async (request, response) => {
+        try {
 
-        await content.remove();
-        res.json({ message: "Content deleted" });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+            // Find the content by its ID
+            const content = await Content.findById(request.params.id);
+            if (!content) {
+                return response.status(404).json({ message: 'Content not found' });
+            }
+
+            // Remove the content from the database
+            await content.deleteOne();
+
+            // Respond with a success message
+            response.status(204).json({ message: 'Content deleted' }).end();
+        } 
+        catch (error) {
+            response.status(500).json({ message: error.message });
+        }
     }
-});
+);
 
 module.exports = contentRouter;
