@@ -11,7 +11,7 @@ const Navbar = () => {
           <div className="flex items-center justify-between">
             <a href="#">
               <img
-                className="w-auto h-10 sm:h-7"
+                className="w-auto h-10 sm:h-8s"
                 src="https://margshala.com/wp-content/uploads/2023/08/Margshala-Logo.png"
                 alt="Logo"
               />
