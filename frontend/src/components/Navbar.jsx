@@ -73,25 +73,25 @@ const Navbar = () => {
                 Home
               </a>
               <a
-                href="#"
+                href="/Khojshala"
                 className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 Khojshala
               </a>
               <a
-                href="#"
+                href="/Swarozgar"
                 className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 Swarozgar Fellowship
               </a>
               <a
-                href="#"
+                href="/ContactUs"
                 className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
-                About
+                ContactUs
               </a>
               <a
-                href="#"
+                href="/Login"
                 className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 Login
