@@ -30,6 +30,14 @@ const postsData = [
 const ExpertAnswer = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [posts, setPosts] = useState(postsData);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newPost, setNewPost] = useState({
+    title: '',
+    author: '',
+    designation: '',
+    content: '',
+    likes: 0,
+  });
 
   const filteredPosts = posts.filter(post =>
     post.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -42,15 +50,13 @@ const ExpertAnswer = () => {
   };
 
   const handleAddPost = () => {
-    const newPost = {
-      id: posts.length + 1,
-      title: "New Post Title",
-      author: 'New Author',
-      designation: 'New Designation',
-      content: 'New post content.',
-      likes: 0,
-    };
-    setPosts([...posts, newPost]);
+    setPosts([...posts, { ...newPost, id: posts.length + 1 }]);
+    setIsModalOpen(false);
+    setNewPost({ title: '', author: '', designation: '', content: '', likes: 0 });
+  };
+
+  const handleChange = e => {
+    setNewPost({ ...newPost, [e.target.name]: e.target.value });
   };
 
   return (
@@ -80,7 +86,7 @@ const ExpertAnswer = () => {
               />
               <div>
                 <div className="font-bold text-gray-900">
-                  {post.author} <span className="text-gray-500 text-sm">• 3rd+</span>
+                  {post.author} 
                 </div>
                 <div className="text-sm text-gray-500 mb-1">{post.designation}</div>
                 <div className="text-gray-700">{post.content}</div>
@@ -101,11 +107,76 @@ const ExpertAnswer = () => {
         <div className="flex justify-center mt-4">
           <button
             className="bg-blue-500 text-white px-4 py-2 rounded"
-            onClick={handleAddPost}
+            onClick={() => setIsModalOpen(true)}
           >
             Add Post
           </button>
         </div>
+
+        {isModalOpen && (
+          <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+            <div className="bg-white p-4 rounded shadow-lg max-w-lg w-full">
+              <h2 className="text-xl font-bold mb-4">Add New Post</h2>
+              <div className="mb-4">
+                <label className="block text-gray-700">Title</label>
+                <input
+                  type="text"
+                  name="title"
+                  value={newPost.title}
+                  onChange={handleChange}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700">Author</label>
+                <input
+                  type="text"
+                  name="author"
+                  value={newPost.author}
+                  onChange={handleChange}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700">Designation</label>
+                <input
+                  type="text"
+                  name="designation"
+                  value={newPost.designation}
+                  onChange={handleChange}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700">Content</label>
+                <textarea
+                  name="content"
+                  value={newPost.content}
+                  onChange={handleChange}
+                  className="w-full p-2 border rounded"
+                  required
+                ></textarea>
+              </div>
+              <div className="flex justify-end">
+                <button
+                  className="bg-gray-500 text-white px-4 py-2 rounded mr-2"
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="bg-blue-500 text-white px-4 py-2 rounded"
+                  onClick={handleAddPost}
+                >
+                  Add Post
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
