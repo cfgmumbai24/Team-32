@@ -1,4 +1,4 @@
-POST http://localhost:3010/api/insertContent
+PUT http://localhost:3010/api/updateContentById/666e39b4b5ec681251d569d1
 Content-Type: application/json
 Authorization: bearer 
 

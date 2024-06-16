@@ -1,33 +1,42 @@
-const jwt = require('jsonwebtoken')
-const User = require('../models/user')
+// middleware/auth.js
+const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 
 const tokenExtractor = (request, response, next) => {
-    const authorization = request.headers.authorization
-    console.log(authorization)
+    let authorization = request.headers.authorization;
+    console.log('Authorization:', authorization);
     if (authorization && authorization.startsWith('bearer ')) {
-        const token = authorization.replace('bearer ', '')
-        request.token = token
+        const token = authorization.substring(7);
+        console.log('Token:', token);
+        request.token = token;
+    } else {
+        request.token = null;
     }
-    next()
+    next();
 }
 
 const userExtractor = async (request, response, next) => {
     if (!request.token) {
-        return response.status(401).json({ error: 'token missing' })
+        return response.status(401).json({ error: 'Token missing' });
     }
-    const decodedToken = jwt.verify(request.token, config.SECRET)
-    if (!decodedToken.id) {
-        return response.status(401).json({ error: 'token invalid' })
+
+    try {
+        const decodedToken = jwt.verify(request.token, process.env.SECRET);
+        if (!decodedToken.email) {
+            return response.status(401).json({ error: 'Token invalid' });
+        }
+        const user = await User.findOne({ email: decodedToken.email });
+        if (!user) {
+            return response.status(401).json({ error: 'User not found' });
+        }
+        request.user = user;
+        next();
+    } catch (error) {
+        return response.status(401).json({ error: 'Token expired or invalid' });
     }
-    const user = await User.findById(decodedToken.id)
-    if (!user) {
-        return response.status(401).json({ error: 'token invalid' })
-    }
-    request.user = user
-    next()
 }
 
 module.exports = {
     tokenExtractor,
-    userExtractor,
-}
+    userExtractor
+};

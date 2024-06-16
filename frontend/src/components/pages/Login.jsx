@@ -3,15 +3,15 @@ import MailIcon from '@mui/icons-material/Mail';
 import LockIcon from '@mui/icons-material/Lock';
 import { Link, useNavigate } from 'react-router-dom';
 import CryptoJS from 'crypto-js';
-89
-const encryptData = (data, secretKey) => {
-  const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
-  return ciphertext;
-};
-const saveToLocalStorage = (key, data, secretKey) => {
-  const encryptedData = encryptData(data, secretKey);
-  localStorage.setItem(key, encryptedData);
-};
+// 89
+// const encryptData = (data, secretKey) => {
+//   const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
+//   return ciphertext;
+// };
+// const saveToLocalStorage = (key, data, secretKey) => {
+//   const encryptedData = encryptData(data, secretKey);
+//   localStorage.setItem(key, encryptedData);
+// };
 export const Login = () => {
   const navigate = useNavigate();
 
@@ -39,9 +39,10 @@ export const Login = () => {
       navigate('/');
     }
     if (data.token!=null&&data.token!=undefined){
-      saveToLocalStorage("auth-token",data.token,"encrypt-key");
-      saveToLocalStorage("userEmail",data.email,"encrypt-key");
-      saveToLocalStorage("userEmail",data.role,"encrypt-key");
+      localStorage.setItem("auth-token",data.token);
+      // saveToLocalStorage("auth-token",data.token,"encrypt-key");
+      // saveToLocalStorage("userEmail",data.email,"encrypt-key");
+      // saveToLocalStorage("userEmail",data.role,"encrypt-key");
     }
   };
 

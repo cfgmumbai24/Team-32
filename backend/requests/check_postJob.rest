@@ -1,0 +1,18 @@
+POST http://localhost:3010/api/insertJob
+Content-Type: application/json
+Authorization: bearer 
+
+{
+  "title": "Hydroponics",
+  "description": "Hydroponics is a method of growing plants without soil, using mineral nutrient solutions in an aqueous solvent. This technique allows for the cultivation of plants in controlled environments, leading to higher yields and the efficient use of resources. It is particularly useful in areas with limited arable land.",
+  "links": [
+    "https://example.com/hydroponics-course",
+    "https://example.com/hydroponics-resources"
+  ],
+  "keywords": [
+    "Hydroponics",
+    "Soilless Cultivation",
+    "Controlled Environment Agriculture"
+  ],
+  "recruiterEmail": "vikas@hydrogrow.com"
+}

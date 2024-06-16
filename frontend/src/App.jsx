@@ -9,9 +9,11 @@ import Home from './components/pages/Home'
 import { Login } from './components/pages/Login'
 import JobDetail from './components/jobDetails'
 import Jobs from './components/pages/Jobs'
-import Swarozgar from './components/pages/Swarozgar'
 import ContactUs from './components/pages/ContactUs'
 import { Signup } from './components/pages/Signup'
+import Courses from './components/pages/Courses'
+import Forum from './components/pages/Forum'
+import Mentorship from './components/pages/Mentorship'
 
 
 function App() {
@@ -24,8 +26,10 @@ function App() {
       <Route exact path='/Login' element={<Login />}/>
       <Route exact path='/Signup' element={<Signup />}/>
       <Route exact path='/Jobs' element={<Jobs />}/>
-      <Route exact path='/Swarozgar' element={<Swarozgar />}/>
       <Route exact path='/ContactUs' element={<ContactUs />}/>
+      <Route exact path='/Courses' element={<Courses />}/>
+      <Route exact path='/Forum' element={<Forum />}/>
+      <Route exact path='/Mentorship' element={<Mentorship />}/>
       <Route path="/job/:id" element={<JobDetail />} />
       
     </Routes>

@@ -1,0 +1,2 @@
+DELETE http://localhost:3010/api/deleteJobByEmail/666e12e4c86a5316d33ddc1b
+Authorization: bearer 

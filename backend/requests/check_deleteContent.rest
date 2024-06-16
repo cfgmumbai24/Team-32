@@ -1,0 +1,2 @@
+DELETE http://localhost:3010/api/deleteContentByEmail/666e39b4b5ec681251d569d1
+Authorization: bearer 

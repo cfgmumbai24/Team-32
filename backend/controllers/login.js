@@ -23,7 +23,7 @@ loginRouter.post('/login', async (req, res) => {
                 const token = jwt.sign({ email: user.email }, jwt_secret, { expiresIn: '1h' });
 
                 // Send the token as a response 
-                res.status(200).json({ token, message: 'Login successful' });
+                res.status(200).json({ email: user.email, roll_no: user.roll, token, message: 'Login successful' });
             } else {
                 res.status(401).json({ message: 'Incorrect password' });
             }

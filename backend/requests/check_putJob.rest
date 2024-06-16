@@ -1,0 +1,18 @@
+PUT http://localhost:3010/api/updateJobById/666e3c8d7614262094f7ccf1
+Content-Type: application/json
+Authorization: bearer 
+
+{
+  "title": "Dairy Farming",
+  "description": "Dairy farming is the keeping of milch animals which produce milk such as cows, buffaloes, and goats. It is also a considerable source for the nutritional security of the agricultural communities. The white revolution in 1946 in India opened avenues for dairy cooperatives and created an organized dairy sector for production and enterprise development.",
+  "links": [
+    "https://example.com/course-link",
+    "https://example.com/resource-link"
+  ],
+  "keywords": [
+    "Dairy",
+    "Farming",
+    "Agriculture"
+  ],
+  "recruiterEmail": "shubham@gmail.com"
+}

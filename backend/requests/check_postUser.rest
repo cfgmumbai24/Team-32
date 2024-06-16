@@ -2,9 +2,9 @@ POST http://localhost:3010/api/insertUser
 Content-Type: application/json
 
 {
-    "email": "johneyman.doe@example.com",
-    "name": "John Doe",
-    "password": "securepassword123",
+    "email": "sureshrr@gmail.com",
+    "name": "Suresh S",
+    "password": "secure1234",
     "role": 2,
-    "keywords": ["example", "test", "user"]
+    "keywords": ["Mushroom Farming", "Onion Farming"]
 }

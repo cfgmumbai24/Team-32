@@ -59,7 +59,7 @@ userRouter.post('/insertUser', async (request, response) => {
         const insertUserQuery = 'INSERT INTO _user (email, name, password, role, keywords) VALUES ($1, $2, $3, $4, $5) RETURNING *';
         const newUsers = await client.query(insertUserQuery, [email, name, passwordHash, role, keywords]);
         const savedUser = newUsers.rows[0];
-        response.status(201).json(savedUser);
+        response.status(201).json("The User is successfully created");
     } catch (dbError) {
         console.error('Database error:', dbError);
         response.status(500).json({ error: 'Internal Server Error' });
