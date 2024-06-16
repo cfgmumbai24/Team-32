@@ -4,7 +4,7 @@ import Mentor from '../Mentor'
 function Mentorship() {
   return (
     <div>
-        Mentorship
+      
         <Mentor />
     </div>
     
