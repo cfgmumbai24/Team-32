@@ -3,17 +3,17 @@ Content-Type: application/json
 Authorization: bearer 
 
 {
-  "title": "Introduction to Machine Learning",
-  "description": "A beginner-friendly course on machine learning.",
+  "title": "Goat Farming",
+  "description": "Goat farming involves raising and breeding goats for milk, meat, fiber, and skins. Goats are versatile animals that adapt well to various environments and are relatively easy to manage. Goat farming can be a profitable venture and contributes to the livelihoods of many small-scale farmers.",
   "links": [
-    "https://example.com/course-link",
-    "https://example.com/resource-link"
+    "https://example.com/goat-farming-course-link",
+    "https://example.com/goat-farming-resource-link"
   ],
   "keywords": [
-    "Machine Learning",
-    "AI",
-    "Data Science"
+    "Goat Farming",
+    "Livestock",
+    "Agriculture"
   ],
-  "courseCreaterEmail": "creator@example.com",
+  "courseCreaterEmail": "deepa@gmail.com",
   "difficulty": "Beginner"
 }

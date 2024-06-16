@@ -3,17 +3,16 @@ Content-Type: application/json
 Authorization: bearer 
 
 {
-  "title": "Software Engineer",
-  "description": "A job position for a software engineer.",
+  "title": "Hydroponics",
+  "description": "Hydroponics is a method of growing plants without soil, using mineral nutrient solutions in an aqueous solvent. This technique allows for the cultivation of plants in controlled environments, leading to higher yields and the efficient use of resources. It is particularly useful in areas with limited arable land.",
   "links": [
-    "https://example.com/job-link",
-    "https://example.com/resource-link"
+    "https://example.com/hydroponics-course",
+    "https://example.com/hydroponics-resources"
   ],
   "keywords": [
-    "Engineering",
-    "Software",
-    "Programming"
+    "Hydroponics",
+    "Soilless Cultivation",
+    "Controlled Environment Agriculture"
   ],
-  "recruiterEmail": "recruiter@example.com"
+  "recruiterEmail": "vikas@hydrogrow.com"
 }
-

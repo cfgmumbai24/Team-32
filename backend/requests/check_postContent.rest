@@ -3,15 +3,15 @@ Content-Type: application/json
 Authorization: bearer 
 
 {
-  "title": "Introduction to Machine Learning",
-  "description": "Data Encryption, Payment Integration APIs, Security Certifications, Web Application Firewalls, Content Security Policy (CSP), Threat Modeling, Incident Response, Penetration Testing Tools, Server Security, Network Security, Cryptography",
+  "title": "Eco-Tourism",
+  "description": "Ecotourism is based on extractive tourism, adventure tourism, nature retreats, and wildlife tourism, etc. which combine education, recreation, and adventure. Eco-tourism has evolved quite a bit as a concept. Earlier, the scenic beauty of pristine natural areas would attract many tourists.",
   "links": [
     "https://example.com/course-link",
     "https://example.com/resource-link"
   ],
   "likes": [],
-  "keywords": [],
-  "contentCreatorEmail": "creator@example.com",
+  "keywords": ["Finance and accounts management", "Hiring and training skilled staff"],
+  "contentCreatorEmail": "Ramesh@gmail.com",
   "images": [
     "https://example.com/image1.jpg",
     "https://example.com/image2.jpg"

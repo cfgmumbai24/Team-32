@@ -1,23 +1,19 @@
-PUT http://localhost:3010/api/updateContentById/666e0b1767b8461fd8a6107f
+PUT http://localhost:3010/api/updateContentById/666e39b4b5ec681251d569d1
 Content-Type: application/json
 Authorization: bearer 
 
 {
-  "title": "Advanced Machine Learning",
-  "description": "This course covers advanced topics in machine learning.",
+  "title": "Eco-Tourism",
+  "description": "Ecotourism is based on extractive tourism, adventure tourism, nature retreats, and wildlife tourism, etc. which combine education, recreation, and adventure. Eco-tourism has evolved quite a bit as a concept. Earlier, the scenic beauty of pristine natural areas would attract many tourists.",
   "links": [
-    "https://example.com/advanced-course-link",
-    "https://example.com/advanced-resource-link"
+    "https://example.com/course-link",
+    "https://example.com/resource-link"
   ],
-  "likes": ["user1@example.com", "user2@example.com"],
-  "keywords": [
-    "Advanced Machine Learning",
-    "Deep Learning",
-    "Neural Networks"
-  ],
-  "contentCreatorEmail": "newcreator@example.com",
+  "likes": [],
+  "keywords": ["Finance and accounts management", "Hiring and training skilled staff"],
+  "contentCreatorEmail": "Ramesh@gmail.com",
   "images": [
-    "https://example.com/new-image1.jpg",
-    "https://example.com/new-image2.jpg"
+    "https://example.com/image1.jpg",
+    "https://example.com/image2.jpg"
   ]
 }

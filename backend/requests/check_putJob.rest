@@ -1,17 +1,18 @@
-PUT http://localhost:3010/api/updateJobById/666e12e4c86a5316d33ddc1b
+PUT http://localhost:3010/api/updateJobById/666e3c8d7614262094f7ccf1
 Content-Type: application/json
+Authorization: bearer 
 
 {
-  "title": "Updated Software Engineer",
-  "description": "An updated description for a software engineer job position.",
+  "title": "Dairy Farming",
+  "description": "Dairy farming is the keeping of milch animals which produce milk such as cows, buffaloes, and goats. It is also a considerable source for the nutritional security of the agricultural communities. The white revolution in 1946 in India opened avenues for dairy cooperatives and created an organized dairy sector for production and enterprise development.",
   "links": [
-    "https://example.com/updated-job-link",
-    "https://example.com/updated-resource-link"
+    "https://example.com/course-link",
+    "https://example.com/resource-link"
   ],
   "keywords": [
-    "Updated Engineering",
-    "Updated Software",
-    "Updated Programming"
+    "Dairy",
+    "Farming",
+    "Agriculture"
   ],
-  "recruiterEmail": "updated.recruiter@example.com"
+  "recruiterEmail": "shubham@gmail.com"
 }

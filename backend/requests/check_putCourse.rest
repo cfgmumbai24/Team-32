@@ -1,19 +1,19 @@
-PUT http://localhost:3010/api/updateCourseById/666e0ce31f4b65d4d6ed0037
+PUT http://localhost:3010/api/updateCourseById/666e3bde7614262094f7ccef
 Content-Type: application/json
 Authorization: bearer 
 
 {
-  "title": "Introduction to Machine Learning",
-  "description": "A beginner-friendly course on machine learning.",
+  "title": "Dairy Farming",
+  "description": "Dairy farming is the keeping of milch animals which produce milk such as cows, buffaloes, and goats. It is also a considerable source for the nutritional security of the agricultural communities. The white revolution in 1946 in India opened avenues for dairy cooperatives and created an organized dairy sector for production and enterprise development.",
   "links": [
     "https://example.com/course-link",
     "https://example.com/resource-link"
   ],
   "keywords": [
-    "Machine Learning",
-    "AI",
-    "Data Science"
+    "Dairy",
+    "Farming",
+    "Agriculture"
   ],
-  "courseCreaterEmail": "creator@example.com",
+  "courseCreaterEmail": "shubham@gmail.com",
   "difficulty": "Beginner"
 }
